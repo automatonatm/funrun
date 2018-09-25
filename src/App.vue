@@ -47,7 +47,7 @@ export default {
       sideNav: false,
       menuItems: [
         { icon: 'directions_run', title: 'View Funruns', link: '/funruns' },
-        { icon: 'room', title: 'Organise Funrun', link: '/meetup/new' },
+        { icon: 'room', title: 'Organise Funrun', link: '/funrun/new' },
         { icon: 'person', title: 'Profile', link: '/profile' },
         { icon: 'face', title: 'Sign up', link: '/signup' },
         { icon: 'lock_open', title: 'Sign in', link: '/signin' },

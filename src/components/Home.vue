@@ -10,11 +10,11 @@
     </v-layout>
     <v-layout row wrap class="mt-2">
       <v-flex xs12>
-        <v-carousel>
+        <v-carousel style="cursor: pointer">
           <v-carousel-item
             v-for="funrun in funruns"
             :key="funrun.id"
-            v-bind:src="funrun.imageUrl">
+            v-bind:src="funrun.imageUrl" @click="onLoadFunrun(funrun.id)">
           <div class="text-xs-center title">
             {{ funrun.title }}
           </div>
@@ -38,6 +38,11 @@
           { imageUrl: 'https://farm5.staticflickr.com/4728/25523344408_88d90c85b7_k_d.jpg', id: 'asdf12345asdf', title: 'Funrun in London' },
           { imageUrl: 'https://farm5.staticflickr.com/4414/36574024414_977fb861c2_k_d.jpg', id: 'asdf098765432asdf', title: 'Funrun in Berlin' }
         ]
+      }
+    },
+    methods: {
+      onLoadFunrun(id) {
+        this.$router.push('/funruns/' + id)
       }
     }
   }

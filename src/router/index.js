@@ -6,6 +6,7 @@ import CreateFunrun from '@/components/Funrun/CreateFunrun'
 import Profile from '@/components/User/Profile'
 import Signup from '@/components/User/Signup'
 import Signin from '@/components/User/Signin'
+import Funrun from '@/components/Funrun/Funrun'
 
 
 Vue.use(Router)
@@ -23,9 +24,14 @@ export default new Router({
       component: Funruns
     },
     {
-      path: '/meetup/new',
+      path: '/funrun/new',
       name: 'CreateFunrun',
       component: CreateFunrun
+    },
+    {
+      path: '/funruns/:id',
+      name: 'Funrun',
+      component: Funrun
     },
     {
       path: '/profile',
