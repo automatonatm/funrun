@@ -2,11 +2,11 @@
   <v-app>
     <v-navigation-drawer v-model="sideNav">
       <v-list>
-        <v-list-tile>
+        <v-list-tile v-for="item in menuItems" :key="item.title">
           <v-list-tile-action>
-            <v-icon>directions_run</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
-          <v-list-tile-content>View Funruns</v-list-tile-content>
+          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
@@ -17,13 +17,13 @@
 
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat>
-          <v-icon left>directions_run</v-icon>
-          View Funruns</v-btn>
+        <v-btn flat v-for="item in menuItems" :key="item.title">
+          <v-icon left dark>{{ item.icon }}</v-icon>
+          {{ item.title }}</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <main>
-
+      <router-view></router-view>
     </main>
   </v-app>
 </template>
@@ -32,7 +32,15 @@
 export default {
   data () {
     return {
-      sideNav: false
+      sideNav: false,
+      menuItems: [
+        { icon: 'directions_run', title: 'View Funruns' },
+        { icon: 'room', title: 'Organise Funrun' },
+        { icon: 'person', title: 'Profile' },
+        { icon: 'face', title: 'Sign up' },
+        { icon: 'lock_open', title: 'Sign in' },
+
+      ]
     }
   }
 }
