@@ -91,7 +91,7 @@
         location: '',
         imageUrl: '',
         description: '',
-        date: new Date(),
+        date: '',
         time: new Date()
       }
     },
