@@ -25,8 +25,25 @@ export const store = new Vuex.Store({
       registeredFunruns: ['asdf098765432asdf']
     }
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    createFunrun (state, payload) {
+      state.loadedFunruns.push(payload)
+    }
+  },
+  actions: {
+    createFunrun ({commit}, payload) {
+      const funrun = {
+        title: payload.title,
+        location: payload.location,
+        imageUrl: payload.imageUrl,
+        description: payload.description,
+        date: payload.date,
+        id: '4567ujhgfder4567'
+      }
+      // Reach out to firebase and store it
+      commit('createFunrun', funrun)
+    }
+  },
   getters: {
     loadedFunruns (state) {
       return state.loadedFunruns.sort((funrunA, funrunB) => {
