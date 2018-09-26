@@ -15,7 +15,7 @@
               <v-card-title primary-title>
                 <div>
                   <h2 class="white--text mb-0">{{ funrun.title }}</h2>
-                  <div>{{ funrun.date }}</div>
+                  <div>{{ funrun.date | date }}</div>
                 </div>
               </v-card-title>
               <v-card-actions>
