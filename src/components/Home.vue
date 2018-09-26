@@ -32,12 +32,9 @@
 
 <script>
   export default {
-    data () {
-      return {
-        funruns: [
-          { imageUrl: 'https://farm5.staticflickr.com/4728/25523344408_88d90c85b7_k_d.jpg', id: 'asdf12345asdf', title: 'Funrun in London' },
-          { imageUrl: 'https://farm5.staticflickr.com/4414/36574024414_977fb861c2_k_d.jpg', id: 'asdf098765432asdf', title: 'Funrun in Berlin' }
-        ]
+    computed: {
+      funruns () {
+        return this.$store.getters.featuredFunruns
       }
     },
     methods: {
