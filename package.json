@@ -13,6 +13,7 @@
     "deploy": "node ./node_modules/vue-gh-pages/index.js"
   },
   "dependencies": {
+    "moment": "^2.22.2",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.0",

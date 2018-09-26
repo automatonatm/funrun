@@ -11,13 +11,17 @@ export const store = new Vuex.Store({
           imageUrl: 'https://farm5.staticflickr.com/4728/25523344408_88d90c85b7_k_d.jpg',
           id: 'asdf12345asdf',
           title: 'Funrun in London',
-          date: '2018-09-25'
+          date: '2018-09-25',
+          location: 'London',
+          description: 'Tired of London, tired of life'
         },
         {
           imageUrl: 'https://farm5.staticflickr.com/4414/36574024414_977fb861c2_k_d.jpg',
           id: 'asdf098765432asdf',
           title: 'Funrun in Berlin',
-          date: '2018-10-25'
+          date: '2018-10-25',
+          location: 'Berlin',
+          description: 'I like bears'
         }
     ],
     user: {
