@@ -31,6 +31,7 @@ export default new Router({
     {
       path: '/funruns/:id',
       name: 'Funrun',
+      props: true,
       component: Funrun
     },
     {
