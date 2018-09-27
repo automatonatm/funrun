@@ -44,14 +44,26 @@
 export default {
   data () {
     return {
-      sideNav: false,
-      menuItems: [
-        { icon: 'directions_run', title: 'View Funruns', link: '/funruns' },
-        { icon: 'room', title: 'Organise Funrun', link: '/funrun/new' },
-        { icon: 'person', title: 'Profile', link: '/profile' },
+      sideNav: false
+    }
+  },
+  computed: {
+    menuItems () {
+      let menuItems = [
         { icon: 'face', title: 'Sign up', link: '/signup' },
-        { icon: 'lock_open', title: 'Sign in', link: '/signin' },
+        { icon: 'lock_open', title: 'Sign in', link: '/signin' }
       ]
+      if (this.userIsAuthenticated) {
+        menuItems = [
+          { icon: 'directions_run', title: 'View Funruns', link: '/funruns' },
+          { icon: 'room', title: 'Organise Funrun', link: '/funrun/new' },
+          { icon: 'person', title: 'Profile', link: '/profile' }
+        ]
+      }
+      return menuItems
+    },
+    userIsAuthenticated () {
+      return this.$store.getters.user !== null && this.$store.getters.user !== undefined
     }
   }
 }
