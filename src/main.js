@@ -27,13 +27,13 @@ new Vue({
       authDomain: 'funrun-b76b3.firebaseapp.com',
       databaseURL: 'https://funrun-b76b3.firebaseio.com',
       projectId: 'funrun-b76b3',
-      storageBucket: 'funrun-b76b3.appspot.com',
+      storageBucket: 'gs://funrun-b76b3.appspot.com',
     })
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.$store.dispatch('autoSignIn', user)
       }
     })
-    this.$store.dispatch('loadMeetups')
+    this.$store.dispatch('loadFunruns')
   }
 })
