@@ -7,7 +7,7 @@ import Profile from '@/components/User/Profile'
 import Signup from '@/components/User/Signup'
 import Signin from '@/components/User/Signin'
 import Funrun from '@/components/Funrun/Funrun'
-
+import AuthGuard from './auth-guard'
 
 Vue.use(Router)
 
@@ -26,7 +26,8 @@ export default new Router({
     {
       path: '/funrun/new',
       name: 'CreateFunrun',
-      component: CreateFunrun
+      component: CreateFunrun,
+      beforeEnter: AuthGuard
     },
     {
       path: '/funruns/:id',
@@ -37,7 +38,8 @@ export default new Router({
     {
       path: '/profile',
       name: 'Profile',
-      component: Profile
+      component: Profile,
+      beforeEnter: AuthGuard
     },
     {
       path: '/signin',

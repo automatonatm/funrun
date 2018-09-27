@@ -29,7 +29,11 @@ new Vue({
       projectId: 'funrun-b76b3',
       storageBucket: 'funrun-b76b3.appspot.com',
     })
-
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.$store.dispatch('autoSignIn', user)
+      }
+    })
     this.$store.dispatch('loadMeetups')
   }
 })

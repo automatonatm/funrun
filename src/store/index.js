@@ -62,7 +62,8 @@ export const store = new Vuex.Store({
               title: obj[key].title,
               description: obj[key].description,
               imageUrl: obj[key].imageUrl,
-              // date: obj[key].date
+              // date: obj[key].date,
+              creatorId: obj[key].creatorId
             })
           }
           commit('setLoadedFunruns', funruns)
@@ -75,13 +76,14 @@ export const store = new Vuex.Store({
           }
         )
     },
-    createFunrun ({commit}, payload) {
+    createFunrun ({commit, getters}, payload) {
       const funrun = {
         title: payload.title,
         location: payload.location,
         imageUrl: payload.imageUrl,
         description: payload.description,
-        // date: payload.date
+        // date: payload.date,
+        creatorId: getters.user.id
         }
       firebase.database().ref('funruns').push(funrun)
         .then((data) => {
@@ -139,6 +141,13 @@ export const store = new Vuex.Store({
             console.log(error)
           }
         )
+    },
+    autoSignIn ({commit}, payload) {
+      commit('setUser', {id: payload.uid, registeredFunruns: []})
+    },
+    logout({commit}) {
+      firebase.auth().signOut()
+      commit('setUser', null)
     },
     clearError ({commit}) {
       commit('clearError')
