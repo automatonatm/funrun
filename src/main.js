@@ -7,6 +7,7 @@ import 'vuetify/dist/vuetify.min.css'
 import { store } from './store'
 import DateFilter from './filters/date'
 import AlertCmp from './components/Shared/Alert.vue'
+import EditFunrunDetailsDialog from './components/Funrun/Edit/EditFunrunDetailsDialog.vue'
 
 Vue.use(Vuetify)
 
@@ -14,6 +15,7 @@ Vue.config.productionTip = false
 
 Vue.filter('date', DateFilter)
 Vue.component('app-alert', AlertCmp)
+Vue.component('app-edit-funrun-details-dialog', EditFunrunDetailsDialog)
 
 /* eslint-disable no-new */
 new Vue({

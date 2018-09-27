@@ -36,6 +36,20 @@ export const store = new Vuex.Store({
     createFunrun (state, payload) {
       state.loadedFunruns.push(payload)
     },
+    updateFunrun (state, payload) {
+      const funrun = state.loadedFunruns.find(funrun => {
+        return funrun.id === payload.id
+      })
+      if (payload.title) {
+        funrun.title = payload.title
+      }
+      if (payload.description) {
+        funrun.description = payload.description
+      }
+      // if (payload.date) {
+      //   funrun.date = payload.date
+      // }
+    },
     setUser (state, payload) {
       state.user = payload
     },
@@ -63,6 +77,7 @@ export const store = new Vuex.Store({
               description: obj[key].description,
               imageUrl: obj[key].imageUrl,
               // date: obj[key].date,
+              location: obj[key].location,
               creatorId: obj[key].creatorId
             })
           }
@@ -116,6 +131,28 @@ export const store = new Vuex.Store({
           console.log(error)
         })
       // Reach out to firebase and store it
+    },
+    updateFunrunData ({commit}, payload) {
+      commit('setLoading', true)
+      const updateObj = {}
+      if (payload.title) {
+        updateObj.title = payload.title
+      }
+      if (payload.description) {
+        updateObj.description = payload.description
+      }
+      // if (payload.date) {
+      //   updateObj.date = payload.date
+      // }
+      firebase.database().ref('funruns').child(payload.id).update(updateObj)
+        .then(() => {
+            commit('setLoading', false)
+            commit('updateFunrun', payload)
+        })
+        .catch(error => {
+          console.log(error)
+          commit('setLoading', false)
+        })
     },
     signUserUp ({commit}, payload) {
       commit('setLoading', true)
