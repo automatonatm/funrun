@@ -30,6 +30,9 @@ export const store = new Vuex.Store({
     error: null
   },
   mutations: {
+    setLoadedFunruns (state, payload) {
+      state.loadedFunruns = payload
+    },
     createFunrun (state, payload) {
       state.loadedFunruns.push(payload)
     },
@@ -47,17 +50,51 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
+    loadFunruns ({commit}) {
+      commit('setLoading', true)
+      firebase.database().ref('funruns').once('value')
+        .then((data) => {
+          const funruns = []
+          const obj = data.val()
+          for (let key in obj) {
+            funruns.push({
+              id: key,
+              title: obj[key].title,
+              description: obj[key].description,
+              imageUrl: obj[key].imageUrl,
+              // date: obj[key].date
+            })
+          }
+          commit('setLoadedFunruns', funruns)
+          commit('setLoading', false)
+        })
+        .catch(
+          (error) => {
+            console.log(error)
+            commit('setLoading', true)
+          }
+        )
+    },
     createFunrun ({commit}, payload) {
       const funrun = {
         title: payload.title,
         location: payload.location,
         imageUrl: payload.imageUrl,
         description: payload.description,
-        date: payload.date,
-        id: '4567ujhgfder4567'
-      }
+        // date: payload.date
+        }
+      firebase.database().ref('funruns').push(funrun)
+        .then((data) => {
+          const key = data.key
+          commit('createFunrun', {
+            ...funrun,
+            id: key
+          })
+        })
+        .catch((error) => {
+          console.log("hello", error)
+        })
       // Reach out to firebase and store it
-      commit('createFunrun', funrun)
     },
     signUserUp ({commit}, payload) {
       commit('setLoading', true)

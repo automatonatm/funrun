@@ -29,5 +29,7 @@ new Vue({
       projectId: 'funrun-b76b3',
       storageBucket: 'funrun-b76b3.appspot.com',
     })
+
+    this.$store.dispatch('loadMeetups')
   }
 })
